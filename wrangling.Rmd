@@ -1,0 +1,39 @@
+---
+title: "wrangling"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+#library(plotly)
+library(skimr)
+
+```
+
+```{r}
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv')
+
+gapminder
+
+```
+
+
+
+
+
+```{r}
+head(gapminder,6)
+str(gapminder)
+summary(gapminder)
+skimr::skim(gapminder)
+
+names(gapminder)
+nrow(gapminder)
+ncol(gapminder)
+dim(gapminder)
+
+c(nrow(gapminder),ncol(gapminder)) #same as dim
+
+
+```
+

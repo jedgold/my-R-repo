@@ -79,10 +79,73 @@ ggplot(data=se)+
 ggplot(data=se)+
   geom_point(aes(x=year,y=visitors,color=state))+
   labs(y="Year", x="Visitors",title="Visitation to SE Region National Parks")+
-  theme_bw()+
+  theme_tufte()+
   theme(legend.title=element_text("state"), axis.text.x=element_text(angle=45,hjust=1))
   
 ```
 
+***Section 5.9***
+**Faceting**
+
+```{r}
+ggplot(data=se)+
+  geom_point(aes(x=year, y=visitors, color=park_name))+
+  facet_wrap(~ state, scales = "free_y")+
+  theme_tufte()+
+  theme(axis.text.x=element_text(angle=90))
+
+```
+
+**Jitter Plots**
+
+```{r}
+ggplot(data=se)+
+  geom_jitter(aes(x=state, y=visitors, color=park_name), alpha=0.4)
+```
+
+
+```{r}
+ggplot(data=se)+
+  geom_violin(aes(x= park_name, y=visitors))+
+  theme_tufte()+
+  theme(axis.text.x=element_text(angle=35))
+  
+```
+
+***Line Geom****
+
+```{r}
+ggplot(se)+
+  geom_line(aes(x=year, y=visitors, color=park_name))+
+  theme_tufte()
+```
+
+
+```{r}
+ggplot(data=acadia, aes(x=year, y=visitors))+
+  geom_point()+
+  geom_line()+
+  geom_smooth()+
+  theme_tufte()
+
+
+
+```
+
+
+```{r}
+ggplot(se, aes(x=year, y=visitors))+
+  facet_wrap(~state)+
+  geom_point()+
+  geom_smooth()
+```
+
+```{r}
+myplot <- ggplot(data=visit_16,aes(x=state, y=visitors, fill=park_name))+
+ # geom_bar(stat="identity") stacked
+  geom_bar(stat="identity", position="dodge", width=0.5)
+myplot
+
+ggsave(filename="myplot.png", myplot)
 ```
 
