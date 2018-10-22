@@ -37,3 +37,34 @@ c(nrow(gapminder),ncol(gapminder)) #same as dim
 
 ```
 
+
+***dplyer**
+
+verbs = 
+*filter*
+subset by row
+subset by column
+*mutate* = create new column
+
+*summarize* down
+*arrange* (reorder)
+```{r}
+#filter by rows
+filter(gapminder, lifeExp <31)
+filter(gapminder, country=="Mexico")
+
+#adding two or more comparators in a text comparision using %in% and c()
+filter(gapminder, country %in% c("Mexico", "Peru"))
+filter(gapminder, country == "Mexico", year == 2002)
+filter(gapminder, country == "Mexico", lifeExp < 50)
+
+#find mean LifeEx of Sweden
+
+sweden.data <- filter(gapminder, country == "Sweden")
+
+# to select a named column of sweden.data us "$"
+mean.sweden.data <- mean(sweden.data$lifeExp)
+
+
+```
+
