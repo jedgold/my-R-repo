@@ -68,3 +68,50 @@ mean.sweden.data <- mean(sweden.data$lifeExp)
 
 ```
 
+
+
+```{r}
+select(gapminder, year, lifeExp)
+select(gapminder, -continent, -lifeExp) # to exclude these columns
+
+#use select and filter together
+gap_cambodia <- filter(gapminder, country == "Cambodia")
+gap_cambodia2 <- select(gap_cambodia, -continent, -lifeExp)
+
+```
+
+***Pipes***
+somewhat different than unix. have to escape operators
+
+
+```{r}
+gapminder %>% head(3)
+gap_cambodia3 <- gapminder %>% filter(country == "Cambodia") %>% select(-continent, -lifeExp)
+
+#clearly written: white space doesn't matter here
+gap_cambodia3 <- gapminder %>%
+  filter(country == "Cambodia") %>%
+  select(-continent, -lifeExp)
+
+
+
+``` 
+***Mutate***
+
+```{r}
+gapminder %>% 
+  mutate(index = 1:nrow(gapminder))
+gapminder %>% 
+  mutate(gdp= pop* gdpPercap)
+
+egypt_vietnam <- filter (gapminder, country %in% c("Egypt", "Vietnam"))
+
+gapminder %>%
+    filter (country %in% c("Egypt", "Vietnam")) %>%
+    mutate (gdp=pop*gdpPercap, max_gdp =max(gdp))
+
+
+```
+
+
+

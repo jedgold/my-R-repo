@@ -143,9 +143,14 @@ ggplot(se, aes(x=year, y=visitors))+
 ```{r}
 myplot <- ggplot(data=visit_16,aes(x=state, y=visitors, fill=park_name))+
  # geom_bar(stat="identity") stacked
-  geom_bar(stat="identity", position="dodge", width=0.5)
+  geom_bar(stat="identity", position="dodge2", width=0.5)
 myplot
 
 ggsave(filename="myplot.png", myplot)
+```
+
+```{r}
+> ggplot(data=visit_16,aes(x=state, y=visitors, fill=park_name))+
++ geom_bar(stat="identity", position=position_dodge2(width=1.4, preserve="single"))
 ```
 
