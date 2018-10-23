@@ -113,5 +113,46 @@ gapminder %>%
 
 ```
 
+**using group_by to analyze a dataset by a particular variable**
+group_by(variable)
+using mutate gives multiple of the same entry for each same value of the variable
 
+```{r}
+gdp_grouped <- gapminder %>% 
+  group_by(country) %>% 
+  mutate(gdp =pop * gdpPercap, max_gdp=max(gdp)) %>%
+  ungroup()
+
+View(gdp_grouped)
+  
+```
+
+**using summarize to get out a single value per particular group variable**
+reduces data frame to grouped varaible and analysis variable
+
+
+```{r}
+gdp_summarized <- gapminder %>% 
+  group_by(country) %>% 
+  mutate(gdp =pop * gdpPercap, max_gdp=max(gdp)) %>%
+  summarize(max_gdp = max(gdp)) %>% 
+  ungroup()
+
+View(gdp_summarized)
+  
+```
+**arrange**
+
+
+```{r}
+gdp_summarized_sort <- gapminder %>% 
+  group_by(country) %>% 
+  mutate(gdp =pop * gdpPercap, max_gdp=max(gdp)) %>%
+  summarize(max_gdp = max(gdp)) %>% 
+  ungroup() %>% 
+  arrange(desc(max_gdp))
+
+View(gdp_summarized_sort)
+  
+```
 
